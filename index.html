@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Loan calculator</title>
+
+    <!-- Bootstrap -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <!-- Bootrstrap DatePicker -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.js"></script>
+    <script type="text/javascript" src="loan.js">
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Loan calculator</h1>
+
+      <!-- Loan form -->
+      <div class="row">
+        <div class="col-md-6" id="loan_src">
+          <form name="loan_form">
+
+            <div class="form-group row">
+              <label for="loan_amount" class="col-sm-3 col-form-label">Loan amount</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="loan_amount" placeholder="Loan amount">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="num_months" class="col-sm-3 col-form-label">Number of months</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="num_months" placeholder="Number of months">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="interest_rate" class="col-sm-3 col-form-label">Interest rate %</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="interest_rate" placeholder="%">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="starting_date" class="col-sm-3 col-form-label">Starting date</label>
+              <div class="col-sm-9 input-group input-append date">
+                <input type="text" class="form-control" id="starting_date" placeholder="YYYY/MM/DD">
+                <span class="input-group-addon add-on"><span class="glypicon glyphicon-calendar"></span> </span>
+              </div>
+            </div>
+
+        <!-- Another interest rate (doesn't work at the moment)-->
+            <div class="form-group row">
+              <label for="new_rate" class="col-sm-3 col-form-label">Changed rate %</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="new_rate" placeholder="%">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="new_date" class="col-sm-3 col-form-label">New date</label>
+              <div class="col-sm-9 input-group input-append date">
+                <input type="text" class="form-control" id="new_date" placeholder="YYYY/MM/DD">
+                <span class="input-group-addon add-on"><span class="glypicon glyphicon-calendar"></span> </span>
+              </div>
+            </div>
+            <!-- End of additional interest rate -->
+
+
+            <input type="button" class="btn btn-success" onclick="validate()" value="Calculate">
+            <input type="button" class="btn btn-warning" onclick="startOver()" value="Start Over">
+            <input type="button" class="btn btn-info" onclick="exportToCsv()" value="Export into .csv">
+          </form>
+        </div>
+        <div class="col-md-6" id="loan_info">
+
+        </div>
+
+        <!-- Table -->
+        <table class="table" id="table">
+
+          <tr>
+            <th>Payment #</th>
+            <th>Payment date</th>
+            <th>Remaining amount</th>
+            <th>Principal payment</th>
+            <th>Interest payment</th>
+            <th>Total payment</th>
+            <th>Interest rate</th>
+          </tr>
+
+      </table>
+      </div>
+    </div>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('#starting_date, #new_date').datepicker({
+          format: 'yyyy/mm/dd'
+        });
+      });
+    </script>
+  </body>
+</html>
